@@ -6,29 +6,7 @@
 import sys
 import random
 from utils import pick_random_item
-
-fantasy_titles = [
-    "The Great",
-    "The Ferocious",
-    "The Enchanted",
-    "The Mighty",
-    "The Legendary",
-    "The Cursed",
-    "The Lost",
-    "The Sacred",
-    "The Brave",
-    "The Shadowed",
-    "The Wise",
-    "The Fearless",
-    "The Valiant",
-    "The Magical",
-    "The Ancient",
-    "The Radiant",
-    "The Bold",
-    "The Fabled",
-    "The Noble",
-    "The Immortal"
-]
+from create_a_character import create_character
 
 enemies = {
     "Easy": {"creature": "Goblin", "health": 15, "attack": 2},
@@ -37,8 +15,6 @@ enemies = {
     "Impossible":  {"creature": "Balrog", "health": 30, "attack": 5}
 }
 enemy = "Goblin"
-
-race = ["Human", "Elf", "Hobbit", "Dwarf"]
 
 items = {
     "Dagger": {"attack": 2, "armour": 0},
@@ -51,43 +27,12 @@ items = {
     "Empower elixir": {"attack": 3, "armour": 0},
 }
 
-class_skill = {
-    "Guardian":  {"health": 35, "attack": 4, "heal": 0, "items": []},
-    "Hunter":  {"health": 25, "attack": 5, "heal": 1, "items": []},
-    "Rogue":  {"health": 25, "attack": 6, "heal":  0, "items": []},
-    "Druid":  {"health": 23, "attack": 4, "heal": 3, "items": []},
-    "Bard":  {"health": 23, "attack": 3, "heal": 6, "items": []}
-}
-
+# Start!
 name = input("Welcome warrior, what is your name?  ").capitalize()
 
-title = random.choice(list(fantasy_titles))
-
-print(f"Hello {name} {title}! Pick a race from the following {race}")
-player_race = input().capitalize()
-
-picked_race = False
-
-while not picked_race:
-    if player_race not in race:
-        print("I do not recognise that race... Pick again")
-    else:
-        picked_race = True
-print(f"You have chosen {player_race}")
-
-class_list = list(class_skill.keys())
-
-print(f"Pick a class from the following {class_list}")
-player_class = input().capitalize()
-
-picked_class = False
-
-while not picked_class:
-    if player_class not in class_skill.keys():
-        print("I do not recognise that race... Pick again")
-    else:
-        picked_class = True
-print(f"You have chosen {player_class}")
+# Create a character
+# Returns a dictionary: {'name': '', race': '', 'class': '', 'class_stats': {'health': int, 'attack': int, 'heal': int, 'items': []}, 'title': ''}
+warrior = create_character(name)
 
 difficulty = input("Choose a difficulty level: Easy, Medium, Hard, Impossible ").capitalize()
 
