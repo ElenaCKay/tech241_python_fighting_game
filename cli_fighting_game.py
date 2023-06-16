@@ -51,9 +51,9 @@ print(f"Watch out! A {enemy} approaches!")
 
 enemy_attack = enemies[difficulty]["attack"]
 enemy_health = enemies[difficulty]["health"]
-players_attack = class_skill[player_class]["attack"]
-players_heal = class_skill[player_class]["heal"]
-players_health = class_skill[player_class]["health"]
+players_attack = warrior["class_stats"]["attack"]
+players_heal = warrior["class_stats"]["heal"]
+players_health = warrior["class_stats"]["health"]
 
 while enemy_health > 0 and players_health > 0:
     attack_or_heal = input(f"You can attack or heal  ").capitalize()
@@ -70,7 +70,7 @@ if enemy_health <= 0:
     print(f"Congratulations! {enemy} had been defeated!")
     random_item_name, random_item_stats = pick_random_item(items)
     print(f"{enemy} dropped a {random_item_name}!")
-    class_skill[player_class]["items"].append(random_item_name)
+    warrior["class_stats"]["items"].append(random_item_name)
 
    # Need to put everything in a loop for this to work.
     difficulty = input("Choose a new difficulty? Easy, Medium, Hard, Impossible ")
