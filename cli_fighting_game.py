@@ -7,6 +7,7 @@ import sys
 import random
 from utils import pick_random_item
 from create_a_character import create_character
+from attack_heal import warrior_attack
 
 enemies = {
     "Easy": {"creature": "Goblin", "health": 15, "attack": 2},
@@ -28,13 +29,13 @@ items = {
 }
 
 # Start!
-name = input("Welcome warrior, what is your name?  ").capitalize()
+name = input("Welcome warrior, what is your name?  \n").capitalize()
 
 # Create a character
 # Returns a dictionary: {'name': '', race': '', 'class': '', 'class_stats': {'health': int, 'attack': int, 'heal': int, 'items': []}, 'title': ''}
 warrior = create_character(name)
 
-difficulty = input("Choose a difficulty level: Easy, Medium, Hard, Impossible ").capitalize()
+difficulty = input("Choose a difficulty level: Easy, Medium, Hard, Impossible \n").capitalize()
 
 picked_difficulty = False
 
@@ -45,9 +46,9 @@ while not picked_difficulty:
             enemy = enemies[difficulty]["creature"]
             picked_difficulty = True
 
-print(f"You have chosen {difficulty}.")
+print(f"You have chosen {difficulty}.\n")
 
-print(f"Watch out! A {enemy} approaches!")
+print(f"Watch out! A {enemy} approaches!\n")
 
 enemy_attack = enemies[difficulty]["attack"]
 enemy_health = enemies[difficulty]["health"]
@@ -56,10 +57,10 @@ players_heal = warrior["class_stats"]["heal"]
 players_health = warrior["class_stats"]["health"]
 
 while enemy_health > 0 and players_health > 0:
-    attack_or_heal = input(f"You can attack or heal  ").capitalize()
+    attack_or_heal = input(f"You can attack or heal  \n").capitalize()
     if attack_or_heal == "Attack":
-        enemy_health -= players_attack
-        print(f"Ouch! {enemy} has {enemy_health} health left!")
+        players_health, enemy_health = warrior_attack(warrior, difficulty)
+
     if attack_or_heal == "Heal":
         players_health += players_heal
         print(f"You healed! +{players_heal} health")

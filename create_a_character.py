@@ -62,12 +62,12 @@ def create_character(name):
         else:
             picked_race = True
             warrior["race"] = player_race
-    print(f"You have chosen {player_race}")
+    print(f"You have chosen {player_race}\n")
 
     # Pick a class
     class_list = list(class_skill.keys())
 
-    print(f"Pick a class from the following {class_list}")
+    print(f"Pick a class from the following {class_list} ")
     player_class = input().capitalize()
 
     picked_class = False
@@ -79,7 +79,6 @@ def create_character(name):
             picked_class = True
             warrior["class"] = player_class
             warrior["class_stats"] = class_skill[player_class]
-    print(f"You have chosen {player_class}")
+    print(f"You have chosen {player_class}\n")
 
-    print(warrior)
     return warrior
